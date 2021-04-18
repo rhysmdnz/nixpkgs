@@ -140,7 +140,10 @@ let
         else if config.fsType == "reiserfs" then "-q"
         else null;
     in {
-      options = mkIf config.autoResize [ "x-nixos.autoresize" ];
+      options = mkMerge [
+        (mkIf config.autoResize [ "x-systemd.growfs" ])
+        (mkIf config.autoFormat [ "x-systemd.makefs" ])
+      ];
       formatOptions = mkIf (defaultFormatOptions != null) (mkDefault defaultFormatOptions);
     };
 
@@ -293,71 +296,6 @@ in
         wants = [ "local-fs.target" "remote-fs.target" ];
       };
 
-    systemd.services =
-
-    # Emit systemd services to format requested filesystems.
-      let
-        formatDevice = fs:
-          let
-            mountPoint' = "${escapeSystemdPath fs.mountPoint}.mount";
-            device'  = escapeSystemdPath fs.device;
-            device'' = "${device'}.device";
-          in nameValuePair "mkfs-${device'}"
-          { description = "Initialisation of Filesystem ${fs.device}";
-            wantedBy = [ mountPoint' ];
-            before = [ mountPoint' "systemd-fsck@${device'}.service" ];
-            requires = [ device'' ];
-            after = [ device'' ];
-            path = [ pkgs.util-linux ] ++ config.system.fsPackages;
-            script =
-              ''
-                if ! [ -e "${fs.device}" ]; then exit 1; fi
-                # FIXME: this is scary.  The test could be more robust.
-                type=$(blkid -p -s TYPE -o value "${fs.device}" || true)
-                if [ -z "$type" ]; then
-                  echo "creating ${fs.fsType} filesystem on ${fs.device}..."
-                  mkfs.${fs.fsType} ${fs.formatOptions} "${fs.device}"
-                fi
-              '';
-            unitConfig.RequiresMountsFor = [ "${dirOf fs.device}" ];
-            unitConfig.DefaultDependencies = false; # needed to prevent a cycle
-            serviceConfig.Type = "oneshot";
-          };
-      in listToAttrs (map formatDevice (filter (fs: fs.autoFormat) fileSystems)) // {
-    # Mount /sys/fs/pstore for evacuating panic logs and crashdumps from persistent storage onto the disk using systemd-pstore.
-    # This cannot be done with the other special filesystems because the pstore module (which creates the mount point) is not loaded then.
-        "mount-pstore" = {
-          serviceConfig = {
-            Type = "oneshot";
-            # skip on kernels without the pstore module
-            ExecCondition = "${pkgs.kmod}/bin/modprobe -b pstore";
-            ExecStart = pkgs.writeShellScript "mount-pstore.sh" ''
-              set -eu
-              # if the pstore module is builtin it will have mounted the persistent store automatically. it may also be already mounted for other reasons.
-              ${pkgs.util-linux}/bin/mountpoint -q /sys/fs/pstore || ${pkgs.util-linux}/bin/mount -t pstore -o nosuid,noexec,nodev pstore /sys/fs/pstore
-              # wait up to 1.5 seconds for the backend to be registered and the files to appear. a systemd path unit cannot detect this happening; and succeeding after a restart would not start dependent units.
-              TRIES=15
-              while [ "$(cat /sys/module/pstore/parameters/backend)" = "(null)" ]; do
-                if (( $TRIES )); then
-                  sleep 0.1
-                  TRIES=$((TRIES-1))
-                else
-                  echo "Persistent Storage backend was not registered in time." >&2
-                  break
-                fi
-              done
-            '';
-            RemainAfterExit = true;
-          };
-          unitConfig = {
-            ConditionVirtualization = "!container";
-            DefaultDependencies = false; # needed to prevent a cycle
-          };
-          before = [ "systemd-pstore.service" ];
-          wantedBy = [ "systemd-pstore.service" ];
-        };
-      };
-
     systemd.tmpfiles.rules = [
       "d /run/keys 0750 root ${toString config.ids.gids.keys}"
       "z /run/keys 0750 root ${toString config.ids.gids.keys}"
@@ -380,6 +318,29 @@ in
       "/sys" = { fsType = "sysfs"; options = [ "nosuid" "noexec" "nodev" ]; };
     };
 
+    # systemd-fstab-generator creates systemd-makefs@dev-foo.service
+    # units in /run, which takes precedent over
+    # /etc/systemd/system/systemd-makefs@.service. In order to force
+    # NixOS to put this PATH config into a drop-in in
+    # /etc/systemd/system/systemd-makefs@.service.d, add a package
+    # with a dummy unit. Drop-ins are applied over /run unit files,
+    # unlike unit files in /etc
+    systemd.services."systemd-makefs@".path = config.system.fsPackages;
+    systemd.packages = [(pkgs.runCommand "systemd-makefs" {} ''
+      mkdir -p $out/lib/systemd/system
+      ln -s /dev/null $out/lib/systemd/system/systemd-makefs@.service
+    '')];
+    # Support systemd-makefs in initrd as well. Without
+    # IgnoreOnIsolate, the Requires dependency between sysroot.mount
+    # and systemd-makefs@dev-vda.service causes the file system to be
+    # unmounted when the service is stopped by the isolate command.
+    boot.initrd.unitOverrides."systemd-makefs@.service".mke2fs = pkgs.writeText "mke2fs.conf" ''
+      [Unit]
+      IgnoreOnIsolate=yes
+      [Service]
+      Environment=PATH=${lib.concatMapStringsSep ":" (p: "${lib.getBin p}/bin") config.system.fsPackages}
+    '';
+    boot.initrd.objects = map (p: { object = "${lib.getBin p}/bin"; executable = true; }) config.system.fsPackages;
   };
 
 }
