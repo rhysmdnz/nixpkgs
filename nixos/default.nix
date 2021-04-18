@@ -13,6 +13,7 @@ in
 
 {
   inherit (eval) pkgs config options;
+  inherit vmConfig;
 
   system = eval.config.system.build.toplevel;
 
