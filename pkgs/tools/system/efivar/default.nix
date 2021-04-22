@@ -45,6 +45,8 @@ stdenv.mkDerivation rec {
     "-flto-partition=none"
   ];
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ popt ];
   depsBuildBuild = [ buildPackages.stdenv.cc ];

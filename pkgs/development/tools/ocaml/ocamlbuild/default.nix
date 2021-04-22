@@ -10,13 +10,15 @@ stdenv.mkDerivation rec {
     sha256 = "1hb5mcdz4wv7sh1pj7dq9q4fgz5h3zg7frpiya6s8zd3ypwzq0kh";
   };
 
+  hardeningDisable = [ "pie" ];
+
   createFindlibDestdir = true;
 
   nativeBuildInputs = [ ocaml findlib ];
   strictDeps = true;
 
-  # x86_64-unknown-linux-musl-ld: -r and -pie may not be used together
-  hardeningDisable = lib.optional stdenv.hostPlatform.isStatic "pie";
+  ## x86_64-unknown-linux-musl-ld: -r and -pie may not be used together
+  #hardeningDisable = lib.optional stdenv.hostPlatform.isStatic "pie";
 
   configurePhase = ''
   runHook preConfigure

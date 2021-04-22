@@ -124,12 +124,12 @@ self: super: builtins.intersectAttrs super {
   }) super.heist;
 
   # https://github.com/NixOS/cabal2nix/issues/136 and https://github.com/NixOS/cabal2nix/issues/216
-  gio = disableHardening ["fortify"] (addPkgconfigDepend pkgs.glib (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.gio));
-  glib = disableHardening ["fortify"] (addPkgconfigDepend pkgs.glib (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.glib));
-  gtk3 = disableHardening ["fortify"] (super.gtk3.override { inherit (pkgs) gtk3; });
+  gio = disableHardening ["fortify" "pie"] (addPkgconfigDepend pkgs.glib (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.gio));
+  glib = disableHardening ["fortify" "pie"] (addPkgconfigDepend pkgs.glib (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.glib));
+  gtk3 = disableHardening ["fortify" "pie"] (super.gtk3.override { inherit (pkgs) gtk3; });
   gtk = let gtk1 = addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.gtk;
             gtk2 = addPkgconfigDepend pkgs.gtk2 gtk1;
-            gtk3 = disableHardening ["fortify"] gtk1;
+            gtk3 = disableHardening ["fortify" "pie"] gtk1;
             gtk4 = if pkgs.stdenv.isDarwin then appendConfigureFlag "-fhave-quartz-gtk" gtk3 else gtk4;
         in gtk3;
   gtksourceview2 = addPkgconfigDepend pkgs.gtk2 super.gtksourceview2;
@@ -567,7 +567,7 @@ self: super: builtins.intersectAttrs super {
   # gtk2hs-buildtools is listed in setupHaskellDepends, but we
   # need it during the build itself, too.
   cairo = addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.cairo;
-  pango = disableHardening ["fortify"] (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.pango);
+  pango = disableHardening ["fortify" "pie"] (addBuildTool self.buildHaskellPackages.gtk2hs-buildtools super.pango);
 
   spago =
     let

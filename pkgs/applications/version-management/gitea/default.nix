@@ -24,6 +24,8 @@ buildGoPackage rec {
     sha256 = "sha256-FMM/iQAxJcymv4jYBzaBXG0Uy8UxHh9gFWB5gzV9cn0=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   unpackPhase = ''
     mkdir source/
     tar xvf $src -C source/

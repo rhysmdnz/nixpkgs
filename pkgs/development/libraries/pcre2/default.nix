@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     hash = "sha256-TZWpbouAUpiTtFYr4SZI15i5V7G6Gq45YGu8KrlW0nA=";
   };
 
+  hardeningDisable = [ "cfprotection" ];
+
   # Disable jit on Apple Silicon, https://github.com/zherczeg/sljit/issues/51
   configureFlags = [
     "--enable-pcre2-16"

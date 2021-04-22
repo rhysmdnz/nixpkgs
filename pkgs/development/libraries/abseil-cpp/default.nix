@@ -26,6 +26,7 @@ stdenv.mkDerivation rec {
       sha256 = "0nhjxqfxpi2pkfinnqvd5m4npf9l1kg39mjx9l3087ajhadaywl5";
     })
   ];
+  hardeningDisable = [ "pie" ];
 
   cmakeFlags = [
     "-DBUILD_SHARED_LIBS=${if static then "OFF" else "ON"}"

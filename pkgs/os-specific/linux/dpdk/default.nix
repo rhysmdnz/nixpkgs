@@ -19,6 +19,8 @@ in stdenv.mkDerivation rec {
     sha256 = "sha256-HhJJm0xfzbV8g+X+GE6mvs3ffPCSiTwsXvLvsO7BLws=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [
     doxygen
     meson

@@ -39,6 +39,8 @@ stdenv.mkDerivation rec {
     sha256 = "1rgkq9sg436smw005ag0j6y3xryhjn18a07m5wjfrfp0s1438nnj";
   };
 
+  hardeningDisable = [ "pie" ];
+
   preConfigure = lib.optionalString stdenv.cc.isClang "configureFlagsArray=(\"--with-cpp=clang -E -C\")";
 
   nativeBuildInputs = [ autoconf wrapGAppsHook ];

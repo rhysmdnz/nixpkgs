@@ -24,6 +24,8 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ pkg-config xxd ];
   buildInputs = [ cairo fluidsynth libX11 libjack2 alsa-lib liblo libsigcxx libsmf ];
 

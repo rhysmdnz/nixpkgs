@@ -29,6 +29,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-b9yQ1mEo1EkjXMguV0t98OvFEQO4h76EVu154MsB2II=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   patches = [
     # locations of nvidia-driver libraries are not resolved via ldconfig which
     # doesn't get used on NixOS. Additional support binaries like nvidia-smi

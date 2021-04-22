@@ -9,6 +9,8 @@ stdenv.mkDerivation rec {
     sha256 = "08hgh4gqdk77jcw8b7gq2mwsfg4a5v5y0j7g42bxiqhmn3ffnsmj";
   };
 
+  hardeningDisable = [ "pie" ];
+
   meta = with lib; {
     description = "Open Dynamics Engine";
     homepage = "https://www.ode.org";

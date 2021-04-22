@@ -191,7 +191,7 @@ self: super: {
   search = dontCheck super.search;
 
   # see https://github.com/LumiGuide/haskell-opencv/commit/cd613e200aa20887ded83256cf67d6903c207a60
-  opencv = dontCheck (appendPatch ./patches/opencv-fix-116.patch super.opencv);
+  opencv = disableHardening [ "pie" ] (dontCheck (appendPatch ./patches/opencv-fix-116.patch super.opencv));
   opencv-extra = dontCheck (appendPatch ./patches/opencv-fix-116.patch super.opencv-extra);
 
   # https://github.com/ekmett/structures/issues/3
@@ -263,7 +263,7 @@ self: super: {
   hgdbmi = dontCheck super.hgdbmi;
   hi = dontCheck super.hi;
   hierarchical-clustering = dontCheck super.hierarchical-clustering;
-  hlibgit2 = disableHardening [ "format" ] super.hlibgit2;
+  hlibgit2 = disableHardening [ "format" "pie" ] super.hlibgit2;
   hmatrix-tests = dontCheck super.hmatrix-tests;
   hquery = dontCheck super.hquery;
   hs2048 = dontCheck super.hs2048;
@@ -284,7 +284,7 @@ self: super: {
   language-slice = dontCheck super.language-slice;
   ldap-client = dontCheck super.ldap-client;
   lensref = dontCheck super.lensref;
-  lvmrun = disableHardening ["format"] (dontCheck super.lvmrun);
+  lvmrun = disableHardening ["format" "pie"] (dontCheck super.lvmrun);
   matplotlib = dontCheck super.matplotlib;
   # https://github.com/matterhorn-chat/matterhorn/issues/679 they do not want to be on stackage
   matterhorn = doJailbreak (super.matterhorn.overrideScope (self: super: {

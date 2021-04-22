@@ -11,6 +11,8 @@ stdenv.mkDerivation {
     sha256 = "0v4yfiwfd08hmh2ydgy6pnmlzjbd96k78dsla9pfd56ka89aw74r";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ cmake ];
 
   meta = with lib; {

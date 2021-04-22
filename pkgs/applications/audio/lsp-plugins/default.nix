@@ -14,6 +14,8 @@ stdenv.mkDerivation rec {
     sha256 = "0g0nx05dyjwz2149v3pj6sa9divr26jyqvg2kk1qk48s2n4najkz";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ pkg-config php makeWrapper ];
   buildInputs = [ jack2 libsndfile libGLU libGL lv2 cairo ladspaH ];
 

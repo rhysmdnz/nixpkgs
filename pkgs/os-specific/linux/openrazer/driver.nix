@@ -13,6 +13,8 @@ stdenv.mkDerivation (common // {
   pname = "openrazer";
   version = "${common.version}-${kernel.version}";
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = kernel.moduleBuildDependencies;
 
   buildFlags = [

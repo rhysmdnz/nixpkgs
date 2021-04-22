@@ -25,8 +25,6 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  hardeningEnable = [ "pie" ];
-
   patches = [
     (fetchpatch {
       name = "CVE-2021-38165.patch";

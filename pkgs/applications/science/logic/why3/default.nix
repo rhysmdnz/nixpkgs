@@ -10,6 +10,8 @@ stdenv.mkDerivation rec {
     sha256 = "0lw0cpx347zz9vvwqibmbxgs80fsd16scgk3isscvwxnajpc3rv8";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = with ocamlPackages; [
     ocaml findlib ocamlgraph zarith menhir menhirLib
     # Emacs compilation of why3.el

@@ -23,6 +23,8 @@ gcc11Stdenv.mkDerivation {
     sha256 = "1pm1r4j4cdcmr8xmslyv2n6iwcjldnr396by4r6lgf4mdlnwahhm";
   };
 
+  hardeningDisable = [ "pie" ];
+
   passthru.updateScript = ./update.sh;
 
   preConfigure = ''

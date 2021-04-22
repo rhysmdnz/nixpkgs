@@ -14,6 +14,8 @@ in stdenv.mkDerivation rec {
   };
   sourceRoot = "ddrescueview-source-${versionBase}~${versionSuffix}/source";
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ fpc lazarus ];
 
   buildInputs = [ atk cairo gdk-pixbuf glib gtk2 libX11 pango ];

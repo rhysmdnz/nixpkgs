@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-ha7x6+41oPRRhuRwEb1ojRWLF1dlEMoJtqXrzRKQ408=";
   };
 
-  hardeningDisable = [ "pic" ];
+  hardeningDisable = [ "pic" "pie" ];
 
   KERNELDIR = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";
 

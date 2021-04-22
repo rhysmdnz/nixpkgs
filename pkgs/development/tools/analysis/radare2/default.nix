@@ -46,6 +46,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-5GvJ7J+pAL8GIZ4Tv09wdGyihfMm1bUABhmf7ozQoxc=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   preBuild = ''
     cp -r ${arm64} libr/asm/arch/arm/v35arm64/arch-arm64
     chmod -R +w libr/asm/arch/arm/v35arm64/arch-arm64

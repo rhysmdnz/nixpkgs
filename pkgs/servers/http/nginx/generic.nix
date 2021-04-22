@@ -133,8 +133,6 @@ stdenv.mkDerivation {
     })
   ] ++ mapModules "patches");
 
-  hardeningEnable = optional (!stdenv.isDarwin) "pie";
-
   enableParallelBuilding = true;
 
   postInstall = if postInstall != null then postInstall else ''

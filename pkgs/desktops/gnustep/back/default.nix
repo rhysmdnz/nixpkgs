@@ -17,6 +17,7 @@ gsmakeDerivation rec {
     sha256 = "sha256-4n2SC68G0dpSz9nqCL5Kz76nyoRxWcRTWDwZsnMoHSM=";
   };
 
+  hardeningDisable = [ "pie" ];
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ cairo base gui freetype xlibsWrapper libXmu ];
   meta = {

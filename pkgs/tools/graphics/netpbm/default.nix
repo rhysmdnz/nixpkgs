@@ -30,6 +30,8 @@ stdenv.mkDerivation {
     sha256 = "NK8GXCvCEnbQJWvVngB5UMOVmfsiyU4Fq0JIY9UNSjo=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [
     pkg-config
     flex

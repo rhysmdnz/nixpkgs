@@ -12,7 +12,7 @@ stdenv.mkDerivation {
   };
 
   enableParallelBuilding = true;
-  hardeningDisable = [ "pic" ];
+  hardeningDisable = [ "pic" "pie" ];
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
 

@@ -100,8 +100,6 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  hardeningEnable = [ "pie" ];
-
   doCheck = true;
   enableParallelChecking = false;
   checkInputs = optional (!stdenv.isDarwin) hostname;

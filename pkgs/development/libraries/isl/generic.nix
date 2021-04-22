@@ -19,6 +19,8 @@ stdenv.mkDerivation {
 
   buildInputs = [ gmp ];
 
+  hardeningDisable = [ "pie" ];
+
   inherit configureFlags;
 
   enableParallelBuilding = true;

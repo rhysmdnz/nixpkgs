@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-dbjLpfflIsEU+wTApghJYBPxBXqS/7MJqcMBcj50o6I=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = [ gtk3 ];
   nativeBuildInputs = [ pkg-config wrapGAppsHook ];
 

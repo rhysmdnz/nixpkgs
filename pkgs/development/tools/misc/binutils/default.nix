@@ -128,7 +128,7 @@ stdenv.mkDerivation {
     then "-Wno-string-plus-int -Wno-deprecated-declarations"
     else "-static-libgcc";
 
-  hardeningDisable = [ "format" "pie" ];
+  hardeningDisable = [ "pie" ];
 
   configurePlatforms = [ "build" "host" "target" ];
 
@@ -137,12 +137,13 @@ stdenv.mkDerivation {
                      else [ "--disable-shared" "--enable-static" ])
   ++ lib.optional withAllTargets "--enable-targets=all"
   ++ [
-    "--enable-64-bit-bfd"
-    "--with-system-zlib"
-
-    "--enable-deterministic-archives"
     "--disable-werror"
+    "--enable-64-bit-bfd"
+    "--enable-cet"
+    "--enable-deterministic-archives"
     "--enable-fix-loongson2f-nop"
+    "--with-pic"
+    "--with-system-zlib"
 
     # Turn on --enable-new-dtags by default to make the linker set
     # RUNPATH instead of RPATH on binaries.  This is important because

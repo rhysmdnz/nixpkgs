@@ -38,6 +38,7 @@ stdenv.mkDerivation {
   configureFlags = [
     "--enable-targets=all" "--enable-64-bit-bfd"
     "--enable-install-libbfd"
+    "--with-pic"
     "--with-system-zlib"
   ] ++ lib.optional (!stdenv.hostPlatform.isStatic) "--enable-shared";
 

@@ -85,7 +85,7 @@ let
       "SYSOUT=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
     ]);
 
-    hardeningDisable = [ "pic" "format" ];
+    hardeningDisable = [ "format" "pic" "pie" ];
 
     dontStrip = true;
     dontPatchELF = true;

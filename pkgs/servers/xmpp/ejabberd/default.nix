@@ -30,6 +30,8 @@ in stdenv.mkDerivation rec {
     sha256 = "09s8mj0dkvp9mxazsqxqqmnl5n2xyi8avx0rzgvqrbl3byanzfzr";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ fakegit makeWrapper ];
 
   buildInputs = [ erlang openssl expat libyaml gd ]

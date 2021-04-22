@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   outputs = [ "out" "dev" "man" "doc" ];
 
-  hardeningDisable = [ "stackprotector" ];
+  hardeningDisable = [ "pie" "stackprotector" ];
 
   # GDB is needed to provide a sane default for `--db-command'.
   # Perl is needed for `callgrind_{annotate,control}'.

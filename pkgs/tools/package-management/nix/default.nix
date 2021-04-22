@@ -42,7 +42,7 @@ common =
         [ "out" "dev" ]
         ++ lib.optionals enableDocumentation [ "man" "doc" ];
 
-      hardeningEnable = [ "pie" ];
+      hardeningDisable = lib.optionals is24 [ "glibcxxassertions" ];
 
       nativeBuildInputs =
         [ pkg-config ]

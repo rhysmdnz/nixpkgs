@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-1Yg1ZtFh+Pbd1OIfOp4+a4JyeZ0FSCDxwlsR6GcY+Gs=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   # Workaround to make the python wrapper not drop this package:
   # pythonFull.buildEnv.override { extraLibs = [ thrift ]; }
   pythonPath = [];

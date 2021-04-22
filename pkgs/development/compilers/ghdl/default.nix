@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
   configureFlags = [ "--enable-synth" ] ++ lib.optional (backend == "llvm")
     "--with-llvm-config=${llvm.dev}/bin/llvm-config";
 
-  hardeningDisable = [ "format" ];
+  hardeningDisable = [ "format" "pie" ];
 
   enableParallelBuilding = true;
 
