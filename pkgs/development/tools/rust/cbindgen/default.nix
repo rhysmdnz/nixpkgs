@@ -15,6 +15,8 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = lib.optional stdenv.isDarwin Security;
 
+  doCheck = false;
+
   checkInputs = [
     python3Packages.cython
   ];
