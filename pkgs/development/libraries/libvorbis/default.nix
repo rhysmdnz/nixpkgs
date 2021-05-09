@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, libogg, pkg-config }:
+{ lib, stdenv, fetchurl, libogg, pkg-config, cmake }:
 
 stdenv.mkDerivation rec {
   pname = "libvorbis";
@@ -11,10 +11,12 @@ stdenv.mkDerivation rec {
 
   outputs = [ "out" "dev" "doc" ];
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [ pkg-config cmake ];
   propagatedBuildInputs = [ libogg ];
 
   doCheck = true;
+
+  #patches = [ ./0001-configure-Check-for-clang.patch ];
 
   meta = with lib; {
     description = "Vorbis audio compression reference implementation";
