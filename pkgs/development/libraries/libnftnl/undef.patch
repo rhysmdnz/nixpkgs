@@ -1,17 +1,5 @@
-diff --git a/object.c b/object.c
-index ab2502a..146c09a 100644
---- a/src/object.c
-+++ b/src/object.c
-@@ -24,6 +24,8 @@
- #include <libnftnl/object.h>
- #include "obj.h"
- 
-+#undef snprintf
-+
- 
- static struct obj_ops *obj_ops[__NFT_OBJECT_MAX] = {
-        [NFT_OBJECT_COUNTER]    = &obj_ops_counter,
-
+diff --git a/src/expr.c b/src/expr.c
+index 8e0bce2..58768e7 100644
 --- a/src/expr.c
 +++ b/src/expr.c
 @@ -24,6 +24,8 @@
@@ -23,5 +11,17 @@ index ab2502a..146c09a 100644
  EXPORT_SYMBOL(nftnl_expr_alloc);
  struct nftnl_expr *nftnl_expr_alloc(const char *name)
  {
-
+diff --git a/src/object.c b/src/object.c
+index 008bade..a6e1079 100644
+--- a/src/object.c
++++ b/src/object.c
+@@ -24,6 +24,8 @@
+ #include <libnftnl/object.h>
+ #include "obj.h"
+ 
++#undef snprintf
++
+ static struct obj_ops *obj_ops[__NFT_OBJECT_MAX] = {
+        [NFT_OBJECT_COUNTER]    = &obj_ops_counter,
+        [NFT_OBJECT_QUOTA]      = &obj_ops_quota,
 
