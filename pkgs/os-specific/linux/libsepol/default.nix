@@ -45,6 +45,7 @@ stdenv.mkDerivation rec {
   ];
 
   NIX_CFLAGS_COMPILE = "-Wno-error";
+  NIX_LDFLAGS = "--allow-multiple-definition";
 
   passthru = { inherit se_release se_url; };
 
