@@ -52,7 +52,6 @@ stdenv.mkDerivation rec {
       url = "https://git.alpinelinux.org/aports/plain/main/elfutils/musl-strndupa.patch?id=2e3d4976eeffb4704cf83e2cc3306293b7c7b2e9";
       sha256 = "sha256-7daehJj1t0wPtQzTv+/Rpuqqs5Ng/EYnZzrcf2o/Lb0=";
     })
-    ./clang.patch
   ] ++ lib.optional stdenv.hostPlatform.isMusl [ ./musl-error_h.patch ];
 
   outputs = [ "bin" "dev" "out" "man" ];
