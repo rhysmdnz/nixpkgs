@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     sha256 = "0jwmf87x5sdis64rbv0l87mdpah1rbilkkxszipbzg128f9w8g5k";
   };
 
-  outputs = [ "out" "dev" "doc" ];
+  outputs = [ "out" "dev" ];
 
   nativeBuildInputs = [ pkg-config cmake ];
   propagatedBuildInputs = [ libogg ];
