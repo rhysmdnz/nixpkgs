@@ -30,6 +30,7 @@ stdenv.mkDerivation rec {
     ++ lib.optionals stdenv.isDarwin [ CoreServices AudioUnit AudioToolbox ];
 
   NIX_LDFLAGS = toString (
+    ++ [ "--allow-multiple-definition" ]
     lib.optional alsaSupport "-lasound"
     ++ lib.optional pulseSupport "-lpulse");
 
