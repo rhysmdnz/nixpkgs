@@ -15,7 +15,6 @@
 , libnotify
 , gdk-pixbuf
 , modemmanager
-, avahi
 , glib-networking
 , python3
 , wrapGAppsHook
@@ -72,7 +71,6 @@ stdenv.mkDerivation rec {
     glib
     json-glib
     libsoup
-    avahi
   ] ++ lib.optionals withDemoAgent [
     libnotify gdk-pixbuf
   ] ++ lib.optionals (!stdenv.isDarwin) [
@@ -92,6 +90,7 @@ stdenv.mkDerivation rec {
     "-Dmozilla-api-key=5c28d1f4-9511-47ff-b11a-2bef80fc177c"
     "-Ddbus-srv-user=geoclue"
     "-Ddbus-sys-dir=${placeholder "out"}/share/dbus-1/system.d"
+    "-Dnmea-source=false"
   ] ++ lib.optionals stdenv.isDarwin [
     "-D3g-source=false"
     "-Dcdma-source=false"
