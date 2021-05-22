@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
-  patches = [ ./ieee.patch ];
+  patches = [ ./ieee.patch ./ieee2.patch ];
 
   meta = with lib; {
     description = "Vorbis audio compression reference implementation";
