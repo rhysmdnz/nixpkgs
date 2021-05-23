@@ -12,6 +12,7 @@
 , libcap
 , polkit
 , libgphoto2
+, avahi
 , libarchive
 , fuse3
 , libcdio
@@ -74,6 +75,7 @@ stdenv.mkDerivation rec {
     libgcrypt
     dbus
     libgphoto2
+    avahi
     libarchive
     fuse3
     libcdio
