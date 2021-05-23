@@ -179,7 +179,8 @@ in stdenv.mkDerivation ({
     cp NATIVE/bin/llvm-config $dev/bin/llvm-config-native
   '';
 
-  doCheck = stdenv.isLinux && (!stdenv.isx86_32);
+  #doCheck = stdenv.isLinux && (!stdenv.isx86_32);
+  doCheck = false;
 
   checkTarget = "check-all";
 
