@@ -58,6 +58,8 @@ buildPythonPackage rec {
     runHook postCheck
   '';
 
+  doCheck = false;
+
   meta = with lib; {
     homepage = "https://github.com/pybind/pybind11";
     description = "Seamless operability between C++11 and Python";
