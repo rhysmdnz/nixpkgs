@@ -14,6 +14,7 @@ stdenv.mkDerivation rec {
   };
 
   patches = [
+    ./cmake-deprecations.patch
     ./fix-cmake-config-includedir.patch
   ];
 
