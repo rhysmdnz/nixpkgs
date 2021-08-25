@@ -4,8 +4,8 @@
 , darwin, cmake, rust, rustPlatform
 , pkg-config, openssl
 , libiconv
-, which, libffi
-, withBundledLLVM ? false
+, which, libffi, ninja
+, withBundledLLVM ? true
 , enableRustcDev ? true
 , version
 , sha256
@@ -133,9 +133,12 @@ in stdenv.mkDerivation rec {
   # rustc unfortunately needs cmake to compile llvm-rt but doesn't
   # use it for the normal build. This disables cmake in Nix.
   dontUseCmakeConfigure = true;
+  dontUseNinjaBuild = true;
+  dontUseNinjaInstall = true;
+  dontUseNinjaCheck = true;
 
   nativeBuildInputs = [
-    file python3 rustPlatform.rust.rustc cmake
+    file python3 rustPlatform.rust.rustc cmake ninja
     which libffi removeReferencesTo pkg-config
   ];
 
