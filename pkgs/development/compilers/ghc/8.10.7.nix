@@ -303,7 +303,7 @@ stdenv.mkDerivation (rec {
   checkTarget = "test";
 
   hardeningDisable =
-    [ "format" ]
+    [ "format" "fortify" ]
     # In nixpkgs, musl based builds currently enable `pie` hardening by default
     # (see `defaultHardeningFlags` in `make-derivation.nix`).
     # But GHC cannot currently produce outputs that are ready for `-pie` linking.
