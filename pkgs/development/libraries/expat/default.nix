@@ -21,7 +21,8 @@ stdenv.mkDerivation rec {
 
   outputMan = "dev"; # tiny page for a dev tool
 
-  doCheck = true; # not cross;
+  #doCheck = true; # not cross;
+  doCheck = false;
 
   preCheck = ''
     patchShebangs ./configure ./run.sh ./test-driver-wrapper.sh
