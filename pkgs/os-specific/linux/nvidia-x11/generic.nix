@@ -24,7 +24,7 @@
   libsOnly ? false
 , # don't include the bundled 32-bit libraries on 64-bit platforms,
   # even if it’s in downloaded binary
-  disable32Bit ? false
+  disable32Bit ? true
   # 32 bit libs only version of this package
 , lib32 ? null
 }:
