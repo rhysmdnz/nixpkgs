@@ -132,7 +132,6 @@ let
       "--with-zlib=system"
       "--with-giflib=system"
       "--with-stdc++lib=dynamic"
-      "--with-toolchain-type=clang"
     ] ++ lib.optional headless "--disable-headful";
 
     separateDebugInfo = true;
@@ -141,10 +140,6 @@ let
       # glibc 2.24 deprecated readdir_r so we need this
       # See https://www.mail-archive.com/openembedded-devel@lists.openembedded.org/msg49006.html
       "-Wno-error=deprecated-declarations"
-      "-Wno-undefined-bool-conversion"
-      "-Wno-reserved-user-defined-literal"
-      "-Wno-expansion-to-defined"
-      "-Wno-undefined-var-template"
     ] ++ lib.optionals stdenv.cc.isGNU [
       # https://bugzilla.redhat.com/show_bug.cgi?id=1306558
       # https://github.com/JetBrains/jdk8u/commit/eaa5e0711a43d64874111254d74893fa299d5716
