@@ -60,6 +60,8 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   meta = with lib; {
     description = "Tools for remote synchronization and `shell archives'";
     longDescription =

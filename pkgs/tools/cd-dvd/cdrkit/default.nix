@@ -25,6 +25,8 @@ stdenv.mkDerivation rec {
 
   makeFlags = [ "PREFIX=\$(out)" ];
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   meta = {
     description = "Portable command-line CD/DVD recorder software, mostly compatible with cdrtools";
 
