@@ -94,15 +94,6 @@ stdenv.mkDerivation rec {
     # https://github.com/NixOS/nixpkgs/issues/43581
     ./use-flatpak-from-path.patch
 
-    # Hardcode flatpak binary path for flatpak-spawn.
-    # When calling the portal’s Spawn command with FLATPAK_SPAWN_FLAGS_CLEAR_ENV flag,
-    # it will clear environment, including PATH, making the flatpak run fail.
-    # https://github.com/flatpak/flatpak/pull/4174
-    (fetchpatch {
-      url = "https://github.com/flatpak/flatpak/commit/495449daf6d3c072519a36c9e4bc6cc1da4d31db.patch";
-      sha256 = "gOX/sGupAE7Yg3MVrMhFXzWHpFn+izVyjtkuPzIckuY=";
-    })
-
     # Nix environment hacks should not leak into the apps.
     # https://github.com/NixOS/nixpkgs/issues/53441
     ./unset-env-vars.patch
@@ -189,7 +180,7 @@ stdenv.mkDerivation rec {
   in ''
     patchShebangs buildutil
     patchShebangs tests
-    PATH=${lib.makeBinPath [vsc-py]}:$PATH patchShebangs --build variant-schema-compiler/variant-schema-compiler
+    PATH=${lib.makeBinPath [vsc-py]}:$PATH patchShebangs --build subprojects/variant-schema-compiler/variant-schema-compiler
   '';
 
   passthru = {
