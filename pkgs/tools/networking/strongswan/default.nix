@@ -112,7 +112,8 @@ stdenv.mkDerivation rec {
     echo "include /etc/ipsec.secrets" >> $out/etc/ipsec.secrets
   '';
 
-  NIX_LDFLAGS = optionalString stdenv.cc.isGNU "-lgcc_s" ;
+  #NIX_LDFLAGS = optionalString stdenv.cc.isGNU "-lgcc_s" ;
+  NIX_LDFLAGS = "--allow-multiple-definition";
 
   meta = {
     description = "OpenSource IPsec-based VPN Solution";

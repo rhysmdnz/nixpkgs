@@ -38,6 +38,8 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   meta = with lib; {
     homepage = "http://horms.net/projects/kexec/kexec-tools";
     description = "Tools related to the kexec Linux feature";

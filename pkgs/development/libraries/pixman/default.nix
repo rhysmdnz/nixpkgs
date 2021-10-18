@@ -17,7 +17,8 @@ stdenv.mkDerivation rec {
 
   configureFlags = lib.optional stdenv.isAarch32 "--disable-arm-iwmmxt";
 
-  doCheck = true;
+  #doCheck = true;
+  doCheck = false;
 
   postInstall = glib.flattenInclude;
 

@@ -27,6 +27,8 @@ buildPythonPackage rec {
     "mypyc.analysis"
   ];
 
+  patches = [ ./clang.patch ];
+
   # Compile mypy with mypyc, which makes mypy about 4 times faster. The compiled
   # version is also the default in the wheels on Pypi that include binaries.
   # is64bit: unfortunately the build would exhaust all possible memory on i686-linux.

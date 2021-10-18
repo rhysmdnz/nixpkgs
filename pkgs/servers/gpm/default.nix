@@ -22,6 +22,8 @@ stdenv.mkDerivation rec {
 
   hardeningDisable = [ "format" ];
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   patches = [
     # musl compat patches, safe everywhere
     (fetchpatch {

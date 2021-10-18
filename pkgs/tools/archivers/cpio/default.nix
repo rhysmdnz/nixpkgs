@@ -36,6 +36,8 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   meta = with lib; {
     homepage = "https://www.gnu.org/software/cpio/";
     description = "A program to create or extract from cpio archives";

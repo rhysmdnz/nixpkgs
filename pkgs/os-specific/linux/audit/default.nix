@@ -32,6 +32,8 @@ stdenv.mkDerivation rec {
     "--with-aarch64"
   ];
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   enableParallelBuilding = true;
 
   # TODO: Remove the musl patches when

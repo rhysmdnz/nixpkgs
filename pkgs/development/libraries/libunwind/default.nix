@@ -23,6 +23,8 @@ stdenv.mkDerivation rec {
     substituteInPlace configure.ac --replace "-lgcc_s" "-lgcc_eh"
   '';
 
+  NIX_LDFLAGS = "--allow-multiple-definition";
+
   nativeBuildInputs = [ autoreconfHook ];
 
   outputs = [ "out" "dev" "devman" ];

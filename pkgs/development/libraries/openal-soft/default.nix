@@ -31,6 +31,7 @@ stdenv.mkDerivation rec {
 
   NIX_LDFLAGS = toString (
     lib.optional alsaSupport "-lasound"
+    ++ [ "--allow-multiple-definition" ]
     ++ lib.optional pulseSupport "-lpulse");
 
   meta = with lib; {
