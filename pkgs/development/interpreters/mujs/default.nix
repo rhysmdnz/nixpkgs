@@ -9,6 +9,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-cZ6IK7fZhkDvoWM4Hpto7xzjXIekIuKqQZDJ5AIlh10=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = [ readline ];
 
   makeFlags = [ "prefix=$(out)" ];

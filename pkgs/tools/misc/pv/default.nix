@@ -14,6 +14,8 @@ stdenv.mkDerivation rec {
     sha256 = "00y6zla8h653sn4axgqz7rr0x79vfwl62a7gn6lzn607zwg9acg8";
   };
 
+  hardeningDisable = [ "pie" ];
+
   patches = [
     # Fix build on aarch64-darwin using patch from Homebrew
     (fetchpatch {

@@ -14,6 +14,8 @@ stdenv.mkDerivation {
     sha256 = "1lb2g37nd8qq5hw5g6l691nx5095336yb2zlbaw43mg56hkj8357";
   };
 
+  hardeningDisable = [ "pie" ];
+
   configurePhase = ''
     ./configure.sh
 

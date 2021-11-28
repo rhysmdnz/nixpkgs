@@ -39,7 +39,6 @@ in stdenv.mkDerivation rec {
     ++ lib.optional withLDAP openldap;
 
   hardeningDisable = [ "format" ];
-  hardeningEnable = [ "pie" ];
 
   patches = [
     ./postfix-script-shell.patch

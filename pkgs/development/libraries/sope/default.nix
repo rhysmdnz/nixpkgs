@@ -13,7 +13,7 @@ gnustep.stdenv.mkDerivation rec {
     sha256 = "0xqa7fsf60acbri5dd9x8nmf1zdkalxnmkm559w4xz7sdi569ssa";
   };
 
-  hardeningDisable = [ "format" ];
+  hardeningDisable = [ "format" "pie" ];
   nativeBuildInputs = [ gnustep.make ];
   buildInputs = flatten ([ gnustep.base libxml2 openssl ]
     ++ optional (openldap != null) openldap

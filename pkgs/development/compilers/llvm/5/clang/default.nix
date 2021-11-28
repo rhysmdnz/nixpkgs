@@ -85,6 +85,7 @@ let
     passthru = {
       isClang = true;
       inherit libllvm;
+      hardeningUnsupportedFlags = [ "cfprotection" "stackclashprotection" ];
     };
 
     meta = llvm_meta // {

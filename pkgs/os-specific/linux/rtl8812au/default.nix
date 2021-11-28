@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = kernel.moduleBuildDependencies;
 
-  hardeningDisable = [ "pic" "format" ];
+  hardeningDisable = [ "format" "pic" "pie" ];
 
   prePatch = ''
     substituteInPlace ./Makefile \

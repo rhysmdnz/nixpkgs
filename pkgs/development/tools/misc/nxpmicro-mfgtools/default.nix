@@ -20,6 +20,8 @@ stdenv.mkDerivation rec {
     sha256 = "0k309lp27d4k6x4qq0badbk8i47xsc6f3fffz73650iyfs4hcniw";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ cmake pkg-config installShellFiles ];
 
   buildInputs = [ bzip2 libusb1 libzip openssl ];

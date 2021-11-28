@@ -21,8 +21,6 @@ stdenv.mkDerivation rec {
   buildInputs = [ openssl perl ]
     ++ lib.optionals stdenv.isLinux [ pps-tools libcap ];
 
-  hardeningEnable = [ "pie" ];
-
   postInstall = ''
     rm -rf $out/share/doc
   '';

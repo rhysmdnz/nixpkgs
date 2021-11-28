@@ -17,6 +17,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-1s3lVNTQDl+pUvbzSMsp3cOUSm6I4DzqJxnLMeeE3F4=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ pkg-config cmake llvm_11.dev ];
 
   buildInputs = [ llvm_11 ];

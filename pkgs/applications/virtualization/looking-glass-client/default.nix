@@ -27,6 +27,8 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ cmake pkg-config ];
 
   buildInputs = [

@@ -16,6 +16,8 @@ stdenv.mkDerivation rec {
 
   strictDeps = true;
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ gettext perlPackages.perl perlPackages.LocaleGettext ];
   buildInputs = [ perlPackages.LocaleGettext ];
 

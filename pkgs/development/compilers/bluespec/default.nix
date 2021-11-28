@@ -34,6 +34,8 @@ in stdenv.mkDerivation rec {
     sha256 = "0gw8wyp65lpkyfhv3laazz9qypdl8qkp1j7cqp0gv11592a9p5qw";
   };
 
+  hardeningDisable = [ "pie" ];
+
   enableParallelBuilding = true;
 
   outputs = [ "out" "doc" ];

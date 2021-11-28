@@ -17,6 +17,8 @@ stdenv.mkDerivation rec {
     sha256 = "1ir3a7rp9rvpv9i8gjrkr383sqadgl7f9nflcrfg7q05bxapwiws";
   };
 
+  hardeningDisable = [ "pie" ];
+
   postPatch = ''
     substituteInPlace src/GNUmakefile \
       --replace /bin/echo ${coreutils}/bin/echo

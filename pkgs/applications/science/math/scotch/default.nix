@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-OQUvWf9HSkppzvwlzzyvhClACIneugEO5kA8oYj4sxE=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   sourceRoot = "${src_name}/src";
 
   preConfigure = ''

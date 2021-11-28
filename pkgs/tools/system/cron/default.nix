@@ -11,8 +11,6 @@ stdenv.mkDerivation rec {
 
   unpackCmd = "(mkdir cron && cd cron && sh $curSrc)";
 
-  hardeningEnable = [ "pie" ];
-
   preBuild = ''
     # do not set sticky bit in /nix/store
     substituteInPlace Makefile --replace ' -o root' ' ' --replace 111 755 --replace 4755 0755

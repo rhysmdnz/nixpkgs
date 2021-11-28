@@ -40,6 +40,7 @@ let
     name = "${pname}-${version}";
     inherit src patches;
     postPatch = commonPostPatch;
+    hardeningDisable = [ "glibcxxassertions" ];
     nativeBuildInputs = [ cmake ];
     buildInputs = [ zlib gmp jdk8 ];
 

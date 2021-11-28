@@ -14,7 +14,7 @@ stdenv.mkDerivation {
 
   buildInputs = [ kmod zlib ];
 
-  hardeningDisable = [ "pic" ];
+  hardeningDisable = [ "pic" "pie" ];
 
   patches = [
     # fix paths in netatop.service

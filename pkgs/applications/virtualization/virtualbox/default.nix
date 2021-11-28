@@ -52,7 +52,7 @@ in stdenv.mkDerivation {
     ++ optionals (!headless) [ qtbase qtx11extras libXinerama SDL ]
     ++ optionals enableWebService [ gsoap zlib ];
 
-  hardeningDisable = [ "format" "fortify" "pic" "stackprotector" ];
+  hardeningDisable = [ "format" "fortify" "pic" "pie" "stackprotector" ];
 
   prePatch = ''
     set -x

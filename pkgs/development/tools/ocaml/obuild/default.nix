@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-dqWP9rwWmr7i3O29v/kipJL01B3qQozaToOFCdfTWZU=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = [ ocaml ];
 
   buildPhase = ''

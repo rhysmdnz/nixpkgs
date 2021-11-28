@@ -49,6 +49,8 @@ stdenv.mkDerivation rec {
     sha256 = "0r39d1394q7kabsgq6vpdlzwsajxafsg23i0r273nggfvs3m805z";
   };
 
+  hardeningDisable = [ "pie" ];
+
   patches = [
     # Don't build GameNetworkingSockets as an ExternalProject,
     # see https://github.com/Soldat/soldat/issues/73

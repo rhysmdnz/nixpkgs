@@ -27,6 +27,8 @@ buildPythonPackage rec {
     sha256 = "06032j0ccjxldx4z9kf97qps2g36mfgvy1nap3b9n75kzmnm4kzw";
   };
 
+  hardeningDisable = [ "pie" ];
+
   XDG_RUNTIME_DIR = "/tmp";
 
   nativeBuildInputs = [ pkg-config ];

@@ -20,6 +20,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-WEI1zcOdd52ZIOrvFv4ITzwm/+7qADo//2SiCg8zRJ4=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = [
     gmp
     mpir

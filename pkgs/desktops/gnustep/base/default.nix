@@ -18,6 +18,7 @@ gsmakeDerivation rec {
     url = "ftp://ftp.gnustep.org/pub/gnustep/core/${pname}-${version}.tar.gz";
     sha256 = "05vjz19v1w7yb7hm8qrc41bqh6xd8in7sgg2p0h1vldyyaa5sh90";
   };
+  hardeningDisable = [ "pie" ];
   nativeBuildInputs = [ pkg-config ];
   propagatedBuildInputs = [
     aspell audiofile

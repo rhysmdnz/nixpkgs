@@ -18,6 +18,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-HOIbdkVV7NKowIGhDdn/S8unIRV469OnRHiuiCGaWgk=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   buildInputs = [ mpir gmp mpfr flint ];
 
   configureFlags = [

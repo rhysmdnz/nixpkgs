@@ -11,6 +11,8 @@ toPerlModule(stdenv.mkDerivation (
   (
   lib.recursiveUpdate
   {
+    hardeningDisable = [ "pie" ];
+
     outputs = [ "out" "devdoc" ];
 
     doCheck = true;

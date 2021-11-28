@@ -47,6 +47,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-/wvtIPF/1HneW0zuT7+VCixemkw91MdU0S66bz2y48U=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   postPatch = ''
     substituteInPlace app/proc_globdata.pas \
       --replace "/usr/share/cudatext" "$out/share/cudatext" \

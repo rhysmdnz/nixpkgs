@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
   };
   sourceRoot = "source/src";
 
+  hardeningDisable = [ "pie" ];
+
   makeFlags = [
     "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
   ];

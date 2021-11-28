@@ -99,6 +99,7 @@ let
     passthru = {
       isClang = true;
       inherit libllvm;
+      hardeningUnsupportedFlags = [ "stackclashprotection" ];
     };
 
     meta = llvm_meta // {

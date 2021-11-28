@@ -16,6 +16,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-my4799a9XFXWl9Xyq6gRfw4YTOCEWJgTvRKz0mVqrkQ=";
   };
 
+  hardeningDisable = [ "glibcxxassertions" ];
+
   nativeBuildInputs = [ cmake ];
   checkInputs = [ cppunit ];
   # Otherwise, tests fail since the resulting shared object libc++utilities.so is only available in PWD of the make files

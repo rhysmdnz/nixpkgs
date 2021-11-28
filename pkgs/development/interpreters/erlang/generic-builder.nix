@@ -94,6 +94,8 @@ stdenv.mkDerivation ({
 
   inherit src version;
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [ autoconf makeWrapper perl gnum4 libxslt libxml2 ];
 
   buildInputs = [ ncurses opensslPackage ]

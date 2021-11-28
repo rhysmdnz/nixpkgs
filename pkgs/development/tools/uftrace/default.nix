@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-uRtMJIZJKGQTGqs8QX60FCeXg3j5hv/V/qw4m8eGYD4=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   postUnpack = ''
         patchShebangs .
   '';

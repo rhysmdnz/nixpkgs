@@ -32,6 +32,8 @@ stdenv.mkDerivation rec {
     sha256 = src_sha256;
   };
 
+  hardeningDisable = [ "glibcxxassertions" ];
+
   patches = [
     ./patches/1.5/use-system-utf8proc-julia-1.3.patch
   ];

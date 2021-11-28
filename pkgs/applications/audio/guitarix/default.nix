@@ -58,6 +58,8 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  hardeningDisable = [ "pie" ];
+
   nativeBuildInputs = [
     gettext
     hicolor-icon-theme

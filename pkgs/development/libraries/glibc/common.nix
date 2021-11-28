@@ -157,6 +157,9 @@ stdenv.mkDerivation ({
     [ "-C"
       "--enable-add-ons"
       "--sysconfdir=/etc"
+      "--enable-bind-now"
+      "--enable-cet"
+      "--enable-stack-protector=strong"
       "--enable-stackguard-randomization"
       "--enable-bind-now"
       (lib.withFeatureAs withLinuxHeaders "headers" "${linuxHeaders}/include")

@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "12c677agkmiqs35qfpqfj7c4kxkizhbk9l6hig36dslzp4fwpl70";
   };
 
+  hardeningDisable = [ "pie" ];
+
   sourceRoot = "source/src";
 
   buildInputs = [ libbfd zlib libiberty ];

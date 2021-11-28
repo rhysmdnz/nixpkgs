@@ -13,6 +13,8 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-Qh6BGPk7a01YzCeX42+Og9M+fjXRs7kzNUCyT4mYab4=";
   };
 
+  hardeningDisable = [ "pie" ];
+
   makeFlags = [
     "WITH_CPP=1"
     "PREFIX=${placeholder "out"}"
