@@ -67,6 +67,8 @@ qtModule {
     mkdir "$(pwd)"
   '';
 
+  hardeningDisable = [ "format" ];
+
   meta = {
     maintainers = with lib.maintainers; [ abbradar periklis ];
   };
