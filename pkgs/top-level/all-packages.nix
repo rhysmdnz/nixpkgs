@@ -24168,6 +24168,8 @@ with pkgs;
   microsoft-edge-beta = callPackage (import ../applications/networking/browsers/microsoft-edge).beta { };
   microsoft-edge-dev = callPackage (import ../applications/networking/browsers/microsoft-edge).dev { };
 
+  microsoft-identity-broker = callPackage ../tools/security/microsoft-identity-broker { };
+
   micronucleus = callPackage ../development/tools/misc/micronucleus { };
 
   markdown-anki-decks = callPackage ../tools/misc/markdown-anki-decks { };
