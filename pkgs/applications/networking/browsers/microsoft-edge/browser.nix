@@ -32,6 +32,7 @@
 , libuuid
 , systemd
 , wayland
+, msalsdk-dbusclient
 }:
 
 let
@@ -98,7 +99,7 @@ stdenv.mkDerivation rec {
         libuuid
       ];
       liboneauth = lib.makeLibraryPath [
-        libuuid xorg.libX11
+        libuuid xorg.libX11 msalsdk-dbusclient
       ];
     };
   in ''
