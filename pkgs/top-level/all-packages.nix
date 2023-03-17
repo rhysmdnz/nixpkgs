@@ -22760,6 +22760,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  msalsdk-dbusclient = callPackage ../development/libraries/msalsdk-dbusclient { };
+
   msgpack = callPackage ../development/libraries/msgpack { };
 
   msoffcrypto-tool = with python3.pkgs; toPythonApplication msoffcrypto-tool;
