@@ -30968,6 +30968,8 @@ with pkgs;
 
   indigenous-desktop = callPackage ../applications/networking/feedreaders/indigenous-desktop { };
 
+  intune-portal = callPackage ../applications/misc/intune-portal { };
+
   jackline = callPackage ../applications/networking/instant-messengers/jackline { };
 
   jay = callPackage ../applications/window-managers/jay { };
