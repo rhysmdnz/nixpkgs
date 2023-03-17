@@ -553,6 +553,7 @@ let
               || cfg.pamMount
               || cfg.enableKwallet
               || cfg.enableGnomeKeyring
+              || config.services.intune.enable
               || cfg.googleAuthenticator.enable
               || cfg.gnupg.enable
               || cfg.failDelay.enable
@@ -578,6 +579,9 @@ let
               '' +
               optionalString cfg.enableGnomeKeyring ''
                 auth optional ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+              '' +
+              optionalString config.services.intune.enable ''
+                auth optional ${pkgs.intune-portal}/lib/security/pam_intune.so
               '' +
               optionalString cfg.gnupg.enable ''
                 auth optional ${pkgs.pam_gnupg}/lib/security/pam_gnupg.so ${optionalString cfg.gnupg.storeOnly " store-only"}
@@ -729,6 +733,9 @@ let
           '' +
           optionalString (config.virtualisation.lxc.lxcfs.enable) ''
             session optional ${pkgs.lxc}/lib/security/pam_cgfs.so -c all
+          '' +
+          optionalString config.services.intune.enable ''
+            session optional ${pkgs.intune-portal}/lib/security/pam_intune.so
           ''
         );
     };
@@ -1366,6 +1373,9 @@ in
       '' +
       optionalString (isEnabled (cfg: cfg.enableGnomeKeyring)) ''
         mr ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so,
+      '' +
+      optionalString (isEnabled (cfg: config.services.intune.enable)) ''
+        mr ${pkgs.intune-portal}/lib/security/pam_intune.so
       '' +
       optionalString (isEnabled (cfg: cfg.startSession)) ''
         mr ${config.systemd.package}/lib/security/pam_systemd.so,
