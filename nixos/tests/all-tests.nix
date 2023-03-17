@@ -411,6 +411,7 @@ in {
   memcached = handleTest ./memcached.nix {};
   merecat = handleTest ./merecat.nix {};
   metabase = handleTest ./metabase.nix {};
+  microsoft-identity-broker = handleTest ./microsoft-identity-broker.nix {};
   mindustry = handleTest ./mindustry.nix {};
   minecraft = handleTest ./minecraft.nix {};
   minecraft-server = handleTest ./minecraft-server.nix {};
