@@ -31429,6 +31429,8 @@ with pkgs;
 
   jitsi = callPackage ../applications/networking/instant-messengers/jitsi { };
 
+  jnr-posix = callPackage ../development/java-modules/jnr-posix { };
+
   joe = callPackage ../applications/editors/joe { };
 
   josm = callPackage ../applications/misc/josm { };
