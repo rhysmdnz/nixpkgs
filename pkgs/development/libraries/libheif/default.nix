@@ -1,7 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, autoreconfHook
+, cmake
 , pkg-config
 , dav1d
 , rav1e
@@ -22,7 +22,7 @@
 
 stdenv.mkDerivation rec {
   pname = "libheif";
-  version = "1.15.2";
+  version = "1.17.3";
 
   outputs = [ "bin" "out" "dev" "man" ];
 
@@ -30,11 +30,11 @@ stdenv.mkDerivation rec {
     owner = "strukturag";
     repo = "libheif";
     rev = "v${version}";
-    sha256 = "sha256-VbMBZ17leGezng2FYKgiSq04Se0PT0a3WqjM6xZ3zS4=";
+    sha256 = "sha256-qjkyoO6oQvCVhwAjrZMYVSfNnVplIZd/X+AqveFxb/o=";
   };
 
   nativeBuildInputs = [
-    autoreconfHook
+    cmake
     pkg-config
   ];
 
@@ -50,6 +50,8 @@ stdenv.mkDerivation rec {
   ];
 
   enableParallelBuilding = true;
+
+  cmakeFlags = [ "--preset=release" ];
 
   # Fix installation path for gdk-pixbuf module
   PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR = "${placeholder "out"}/${gdk-pixbuf.moduleDir}";
