@@ -3,22 +3,39 @@
 , stdenv
 , buildNpmPackage
 , nix-update-script
+, giflib
+, pixman
+, cairo
+, pango
+, pkg-config
 }:
 
 buildNpmPackage rec {
   pname = "jellyfin-web";
-  version = "10.8.13";
+  version = "10.9";
 
   src = fetchFromGitHub {
     owner = "jellyfin";
     repo = "jellyfin-web";
-    rev = "v${version}";
-    hash = "sha256-2W9s8TQV9BtxNYIrCbGRh5EUw0brwxSHohnb7269pQE=";
+    rev = "82292d5715c1a53359879943f0a739399322d43e";
+    hash = "sha256-v6inWtm/mfn/VtGUCCLNbsp51tycUpKv0iDc4AjqVfE=";
   };
 
-  npmDepsHash = "sha256-i077UAxY2K12VXkHYbGYZRV1uhgdGUnoDbokSk2ZDIA=";
+  npmDepsHash = "sha256-Qhfiq+ILsXrGUufOUHogXl05zCZC2YHWpVim9yIEJVs=";
+  makeCacheWritable = true;
 
   npmBuildScript = [ "build:production" ];
+
+  nativeBuildInputs = [
+      pkg-config
+  ];
+
+  buildInputs = [
+      giflib
+      pixman
+      cairo
+      pango
+  ];
 
   installPhase = ''
     runHook preInstall
