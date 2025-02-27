@@ -507,9 +507,14 @@ let self = {
     src = fetchFromGitHub {
       owner = "nginx";
       repo = "njs";
-      rev = "0.8.7";
-      hash = "sha256-VEXzP+cN5hnDeniccwY7GIi4x460rnWO/o7ja3DyRCc=";
+      rev = "0.8.9";
+      hash = "sha256-TalS9EJP+vB1o3BKaTvXXnudjKhNOcob3kDAyeKej3c=";
     };
+
+    #inputs = [ zstd ];
+    #patches = [
+    #  ./nginx-njs-zlib-ng.patch
+    #];
 
     # njs module sources have to be writable during nginx build, so we copy them
     # to a temporary directory and change the module path in the configureFlags
@@ -519,6 +524,7 @@ let self = {
       cp --recursive "${src}" "$NJS_SOURCE_DIR"
       chmod -R u+rwX,go+rX "$NJS_SOURCE_DIR"
       export configureFlags="''${configureFlags/"${src}"/"$NJS_SOURCE_DIR/nginx"}"
+      patch -p1 --directory=$NJS_SOURCE_DIR < ${./nginx-njs-zlib-ng.patch}
       unset NJS_SOURCE_DIR
     '';
 
